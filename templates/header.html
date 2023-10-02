@@ -1,9 +1,9 @@
 {% if config.extra.header_nav %}
 <nav class="navBar">
-  <div class="navLogoMenuItem">
+  <a class="navLogoMenuItem" href="/">
     <div class="navLogo">{{ config.extra.title_logo }}</div>
     {{ config.title }}
-  </div>
+  </a>
   <ul class="navLinks">
   {% for nav_item in config.extra.header_nav %}
   {% set current_nav_item = nav_item[lang] %}
