@@ -3,7 +3,9 @@
 {% block content %}
 <div><a href="..">..</a>/<span class="metaData">{{ page.slug }}</span></div>
 <time datetime="{{ page.date }}">Published on: <span class="metaData">{{ page.date }}</span></time>
+{% if page.title %}
 <h1>{{ page.title }}</h1>
+{% endif %}
 
 {% if page.toc and page.extra.toc %}
 <h2>Table of contents</h2>

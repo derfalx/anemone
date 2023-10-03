@@ -1,0 +1,9 @@
+<div class="centeredFlexRowContainer">
+        <blockquote>
+            {{ body | safe }}
+            {% if author %}
+            <br>
+            -- {{ author}}
+            {% endif %}
+        </blockquote>
+</div>
