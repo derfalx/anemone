@@ -14,10 +14,10 @@
 <ul class="titleList">
 {% for page in pages %}
   <li>
-    <a href="{{ page.permalink | safe }}">{{ page.date | date(timezone="Europe/Berlin", locale="de_DE", format="%d. %B %Y") }} {{ page.title }}</a><br />
+    <h3><a href="{{ page.permalink | safe }}">{{ page.date | date(timezone="Europe/Berlin", locale="de_DE", format="%d. %B %Y") }} {{ page.title }}</a></h3>
     {% if page.summary %}
     <p>{{ page.summary | safe }}</p>
-    <a href="{{ page.permalink }}#continue-reading">>> Continue Reading <<</a>
+    <a href="{{ page.permalink }}#continue-reading">>> Weiterlesen <<</a>
     {% elif page.description %}
     <p>{{ page.description }}</p>
     {% else %}

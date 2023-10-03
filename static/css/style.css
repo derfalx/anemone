@@ -266,6 +266,12 @@ class navItem.
   padding: 0rem 1rem 0 0;
 }
 
+.currentNavMenuItem{
+  display: inline-block;
+  padding: 0rem 1rem 0 0;
+  text-decoration: underline;
+}
+
 .themeButton {
   cursor: pointer;
   border: none;

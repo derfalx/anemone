@@ -8,7 +8,20 @@
   {% for nav_item in config.extra.header_nav %}
   {% set current_nav_item = nav_item[lang] %}
   {% if current_nav_item and current_nav_item.name %}
-  <a href="{{ get_url(path=current_nav_item.url) }}" class="navMenuItem" {% if current_nav_item.new_tab %}target="_blank" rel="noreferrer noopener"{% endif %}>{{ current_nav_item.name }}</a>
+  {#
+    Depending on the current url, the class of the a-tag is set.
+    The menu-Item which is parent of the current url is underlined.
+    Since home ('/') is the parent of any, it is excluded from this
+    procedure.
+    For the ease of reading this template, this is done using a
+    variable instead of inline.
+  #}
+  {% if current_path is starting_with(current_nav_item.url) and not current_nav_item.url == "/" %}
+  {% set item_class = "currentNavMenuItem" %}
+  {% else %}
+  {% set item_class = "navMenuItem" %}
+  {% endif %}
+  <a href="{{ get_url(path=current_nav_item.url) }}" class="{{ item_class }}" {% if current_nav_item.new_tab %}target="_blank" rel="noreferrer noopener"{% endif %}>{{ current_nav_item.name }}</a>
   {% endif %}
   {% endfor %}
   <div class="navMenuItem">
