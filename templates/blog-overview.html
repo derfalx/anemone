@@ -23,6 +23,22 @@
     {% else %}
     <br />
     {% endif %}
+    {% if page.taxonomies.categories %}
+    <p class="tagsData">
+    Kategorien:
+    {% for category in page.taxonomies.categories %}
+    <a href="/categories/{{ category | slugify }}">#&#47;{{ category }}&#47;{% if not loop.last %};{% endif %}</a>
+    {% endfor %}
+    </p>
+    {% endif %}
+    {% if page.taxonomies.tags %}
+    <p class="tagsData">
+    Tags:
+    {% for tag in page.taxonomies.tags %}
+    <a href="/tags/{{ tag | slugify }}">#&#47;{{ tag }}&#47;{% if not loop.last %};{% endif %}</a>
+    {% endfor %}
+    </p>
+    {% endif %}
   </li>
   <hr>
 {% endfor %}
