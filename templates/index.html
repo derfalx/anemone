@@ -2,28 +2,26 @@
 
 {% block content %}
 {{ section.content | safe }}
-
-{% if config.extra.list_pages %}
-
-{% if paginator %}
-{% set pages = paginator.pages %}
-{% else %}
-{% set pages = section.pages %}
-{% endif %}
-
-<ul class="titleList">
-{% for page in pages %}
+<hr />
+<h2>Das neueste Haiku</h2>
+{% set haiku_section = get_section(path="haiku/_index.md") %}
+{% set page = haiku_section.pages[0] %}
+<p>{{ page.summary | safe }}</p>
+{% set haikus_url = get_url(path="@/haiku/_index.md") %}
+<p><a href="{{ haikus_url }}">>> Weitere Haiku <<</a></p>
+<hr />
+<h2>Aktuelle Blogbeiträge</h2>
+<ul>
+{% set blog_section = get_section(path="blog/_index.md") %}
+{% for page in blog_section.pages %}
+  {% if loop.index >= 5 %} {% break %} {% endif %}
   <li>
-    <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
-    <br />
-    {{ page.description }}
+      <a href="{{ page.permalink | safe }}">{{ page.date | date(timezone="Europe/Berlin", locale="de_DE", format="%d. %B %Y") }}: {{ page.title }}</a>
   </li>
 {% endfor %}
 </ul>
+{% set blog_url = get_url(path="@/blog/_index.md") %}
+<p><a href="{{ blog_url }}">>> Weitere Blogbeiträge <<</a></p>
 
-{% if paginator %}
-<div class="metaData">{% if paginator.previous %}<a href="{{ paginator.first }}">⥶</a> &nbsp <a href="{{ paginator.previous }}"><</a>{% endif %} &nbsp {{ paginator.current_index }} / {{ paginator.number_pagers }} &nbsp {% if paginator.next %}<a href="{{ paginator.next }}">></a> &nbsp <a href="{{ paginator.last }}">⥸</a>{% endif %}</div>
-{% endif %}
-
-{% endif %}
 {% endblock content %}
+
