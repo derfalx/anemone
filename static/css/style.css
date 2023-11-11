@@ -1,10 +1,4 @@
 :root,
-/*:root.light {*/
-/*  --bgColor: #EEEEEE;*/
-/*  --fgColor: #41474E;*/
-/*  --metaColor: #D26878;*/
-/*  --linkColor: #5690AF;*/
-/*}*/
 
 :root.light {
   --bgColor: #EEEEEE;
@@ -130,28 +124,28 @@ img {
   border-radius: 15px
 }
 
-pre {
-  border: 1px solid var(--metaColor);
-  padding: 1rem;
-  overflow-x: auto;
-  font-style: "Fira Code";
-}
-
 p code,
 li code,
 div code {
-  padding: 0 .2rem 0 .2rem;
+  padding: 0rem .2rem 0 .2rem;
   border-radius: .3rem;
   color: var(--bgColor);
   background-color: var(--fgColor);
 }
 
-pre code {
-  padding: 0;
-  border-radius: 0;
-  color: inherit;
-  background-color: inherit;
-}
+/*pre {*/
+/*  padding: 0;*/
+/*  border-radius: 0;*/
+/*  color: inherit;*/
+/*  background-color: inherit;*/
+/*  max-width: 90rem;*/
+/*  overflow-wrap: anywhere;*/
+/*}*/
+
+/*span {*/
+/*!*  overflow-wrap: anywhere;*!*/
+/*  display: block;*/
+/*}*/
 
 iframe {
   max-width: 90%;
@@ -168,19 +162,19 @@ iframe {
 /*  line-height: 1.1*/
 /*}*/
 
-thead th:first-child {
-  width: 20%
-}
+/*thead th:first-child {*/
+/*  width: 20%*/
+/*}*/
 
-th {
-  font-weight: 400
-}
+/*th {*/
+/*  font-weight: 400*/
+/*}*/
 
-td,
-th {
-  padding: .5rem;
-/*  border: dashed .1rem var(--metaColor)*/
-}
+/*td,*/
+/*th {*/
+/*  padding: .5rem;*/
+/*!*  border: dashed .1rem var(--metaColor)*!*/
+/*}*/
 
 footer {
   font-size: 1.4rem;
@@ -348,6 +342,8 @@ class navItem.
 .centeredFlexRowContainer {
   display: flex;
   flex-direction: row;
+  max-width: 80%;
+  margin: auto;
   justify-content: center;
 }
 
@@ -363,4 +359,45 @@ class navItem.
   font-family: "Fira Code";
   /* src-path is relative to this css file */
   src: url(../font/FIRACODE-REGULAR.TTF)
+}
+
+
+pre {
+  padding: 1rem;
+  margin: auto;
+/*  overflow-wrap: break-word;*/
+  border: 1px solid var(--metaColor);
+  overflow-x: auto;
+  font-style: "Fira Code";
+  text-wrap: wrap;
+  white-space-collapse: preserve;
+}
+
+
+/*pre {*/
+/*  padding: 1rem;*/
+/*  overflow: auto;*/
+/*  overflow-wrap: break-word;*/
+/*}*/
+
+pre[data-linenos] {
+  padding: 1rem 0;
+}
+pre table td {
+  padding: 0;
+}
+
+pre table td:nth-of-type(1) {
+  text-align: center;
+  user-select: none;
+}
+pre mark {
+  
+  display: block;
+  
+  background-color: rgba(254, 252, 232, 0.9);
+}
+pre table {
+  width: 80%;
+  border-collapse: collapse;
 }
