@@ -5,22 +5,15 @@
 
 {{ section.content | safe }}
 
-{% if paginator %}
-{% set pages = paginator.pages %}
-{% else %}
-{% set pages = section.pages %}
-{% endif %}
 
-<ul class="titleList">
-{% for page in pages %}
-  <li>
-    <a href="{{ page.permalink | safe }}">{{ page.date | date(timezone="Europe/Berlin", locale="de_DE", format="%d. %B %Y") }} {{ page.title }}</a><br />
-    <i>{{ page.description }}</i>
-  </li>
-{% endfor %}
-</ul>
-
-{% if paginator %}
-<div class="metaData">{% if paginator.previous %}<a href="{{ paginator.first }}">⥶</a> &nbsp <a href="{{ paginator.previous }}"><</a>{% endif %} &nbsp {{ paginator.current_index }} / {{ paginator.number_pagers }} &nbsp {% if paginator.next %}<a href="{{ paginator.next }}">></a> &nbsp <a href="{{ paginator.last }}">⥸</a>{% endif %}</div>
+{% if section.extra.pages_toc %}
+  {% set subsections = section.subsections %}
+  {% if paginator %}
+    {{ macros::toc_wo_subsections_paginator(section=section, paginator=paginator) }} 
+  {% else %}
+    {{ macros::toc_wo_subsections(section=section, pages=section.pages) }}
+  {% endif %}
+{% elif section.extra.pages_subsections_toc %}
+  {{ macros::toc_w_subsections(section=section, pages=section.pages) }}
 {% endif %}
 {% endblock content %}

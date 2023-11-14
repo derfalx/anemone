@@ -10,7 +10,7 @@
 {% set haikus_url = get_url(path="@/haiku/_index.md") %}
 <p><a href="{{ haikus_url }}">>> Weitere Haiku <<</a></p>
 <hr />
-<h2>Aktuelle Blogbeiträge</h2>
+<h2>Aktuelle Blogbeiträge / Latest Posts</h2>
 <ul>
 {% set blog_section = get_section(path="blog/_index.md") %}
 {% for page in blog_section.pages %}

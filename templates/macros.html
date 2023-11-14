@@ -1,0 +1,42 @@
+{% macro toc_wo_subsections(section, pages) %}
+{#
+    Macro to print a TOC of a section using the given pages
+#}
+<ul class="titleList">
+{% for page in pages %}
+  <li>
+    <a href="{{ page.permalink | safe }}">{% if not section.extra.no_date %}{{ page.date | date(timezone="Europe/Berlin", locale="de_DE", format="%d. %B %Y") }}{% endif %} {{ page.title }}</a><br />
+    <i>{{ page.description }}</i>
+  </li>
+{% endfor %}
+</ul>
+{% endmacro toc_wo_subsections %}
+
+
+
+{% macro toc_wo_subsections_paginator(section, paginator) %}
+{# 
+    Macro to print TOC of a section using a paginator
+#}
+{{ self::toc_wo_subsections(section=section, pages=paginator.pages) }}
+<div class="metaData">{% if paginator.previous %}<a href="{{ paginator.first }}">⥶</a> &nbsp <a href="{{ paginator.previous }}"><</a>{% endif %} &nbsp {{ paginator.current_index }} / {{ paginator.number_pagers }} &nbsp {% if paginator.next %}<a href="{{ paginator.next }}">></a> &nbsp <a href="{{ paginator.last }}">⥸</a>{% endif %}</div>
+{% endmacro toc_wo_subsections_paginator %}
+
+
+{% macro toc_w_subsections(section, pages) %}
+{#
+    Macro to print a TOC including subsections
+
+#}
+{{ self::toc_wo_subsections(section=section, pages=pages) }}
+<ul class=titleList>
+{% for subsection_path in section.subsections %}
+    {% set subsection = get_section(path=subsection_path) %}
+    <ul class=titleList>
+    <li><a href="{{ subsection.permalink | safe }}">{{ subsection.title }}</a>
+    {{ self::toc_w_subsections(section=subsection, pages=subsection.pages) }}
+    </li>
+    </ul>
+{% endfor %}
+</ul>
+{% endmacro toc_w_subsections %}
