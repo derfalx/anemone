@@ -3,8 +3,9 @@
 :root.light {
   --bgColor: #EEEEEE;
   --fgColor: #2B2F33;
-  --metaColor: #6256B0;
-  --linkColor: #634A96; 
+  --linkColor: #634A96;/* #6256B0;*/
+  /*--linkColor: #634A96;*/
+  --metaColor: #9D0606;
 }
 
 :root.dark {
@@ -125,8 +126,8 @@ img {
 }
 
 p code,
-li code,
-div code {
+li code
+/*div code*/ {
   padding: 0rem .2rem 0 .2rem;
   border-radius: .3rem;
   color: var(--bgColor);
