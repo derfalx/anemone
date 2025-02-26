@@ -402,3 +402,7 @@ pre table {
   width: 100%;
   border-collapse: collapse;
 }
+
+.footnote-definition {
+  font-size: 80%;
+}
